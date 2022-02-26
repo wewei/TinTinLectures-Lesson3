@@ -3,6 +3,7 @@ type HttpResponse =
    body: blob;
    headers: vec HeaderField;
    status_code: nat16;
+   streaming_strategy: opt record {};
  };
 type HttpRequest = 
  record {

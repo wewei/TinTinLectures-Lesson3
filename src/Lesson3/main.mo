@@ -15,6 +15,7 @@ actor {
     body: Blob;
     headers: [HeaderField];
     status_code: Nat16;
+    streaming_strategy: ?{};
   };
 
   type HeaderField = (Text, Text);
@@ -37,6 +38,7 @@ actor {
       status_code = 200;
       headers = [("Content-Type", "text/plain"), ("Content.Length", Nat.toText(body.size()))];
       body = body;
+      streaming_strategy = null;
     }
   }
 };

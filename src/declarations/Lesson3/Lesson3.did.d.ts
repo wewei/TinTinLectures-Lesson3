@@ -9,6 +9,7 @@ export interface HttpRequest {
 export interface HttpResponse {
   'body' : Array<number>,
   'headers' : Array<HeaderField>,
+  'streaming_strategy' : [] | [{}],
   'status_code' : number,
 }
 export interface _SERVICE {
