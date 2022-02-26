@@ -97,7 +97,7 @@ export default function App() {
             <img src="logo.png" width="100%" />
             <Box sx={{ marginBottom: 3 }}>
               <Typography sx={{ fontWeight: "Bold" }}>
-                Homework for Lesson3
+                Homework for Lesson 3
               </Typography>
               <Typography>
                 <ul>
