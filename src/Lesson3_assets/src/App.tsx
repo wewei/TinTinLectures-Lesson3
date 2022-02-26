@@ -59,7 +59,8 @@ export default function App() {
 
   const updateInput = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      setDisplayValue(BigInt(e.target.value));
+      const str = e.target.value.replace(/^\D*/, "").replace(/\D.*/, "");
+      setDisplayValue(BigInt(str));
     },
     [setDisplayValue]
   );
@@ -68,7 +69,6 @@ export default function App() {
     setTaskCounter,
     async () => {
       await Lesson3.set(displayValue);
-      console.log(displayValue);
       update();
     },
     [update, displayValue]
@@ -99,19 +99,24 @@ export default function App() {
               <Typography sx={{ fontWeight: "Bold" }}>
                 Homework for Lesson 3
               </Typography>
-              <Typography>
-                <ul>
-                  <li>Hit the "Increment" button to increase the value by 1</li>
-                  <li>
+              <ul>
+                <li>
+                  <Typography>
+                    Hit the "Increment" button to increase the value by 1
+                  </Typography>
+                </li>
+                <li>
+                  <Typography>
                     Change the value of text field to direct set the value
-                  </li>
-                </ul>
-              </Typography>
+                  </Typography>
+                </li>
+              </ul>
             </Box>
 
             <TextField
               value={displayValue.toString()}
               type="number"
+              // inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
               fullWidth
               onChange={updateInput}
               label={isDirty ? "New Value" : "Current Value"}
