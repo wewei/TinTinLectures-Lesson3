@@ -1,13 +1,34 @@
+type StreamingStrategy = variant {
+                           Callback:
+                            record {
+                              callback:
+                               func (StreamingCallbackToken) ->
+                                (opt StreamingCallbackHttpResponse) query;
+                              token: StreamingCallbackToken;
+                            };};
+type StreamingCallbackToken = 
+ record {
+   content_encoding: text;
+   index: nat;
+   key: Key;
+   sha256: opt vec nat8;
+ };
+type StreamingCallbackHttpResponse = 
+ record {
+   body: vec nat8;
+   token: opt StreamingCallbackToken;
+ };
+type Key = text;
 type HttpResponse = 
  record {
-   body: blob;
+   body: vec nat8;
    headers: vec HeaderField;
    status_code: nat16;
-   streaming_strategy: opt record {};
+   streaming_strategy: opt StreamingStrategy;
  };
 type HttpRequest = 
  record {
-   body: blob;
+   body: vec nat8;
    headers: vec HeaderField;
    method: text;
    url: text;
